@@ -1,0 +1,5 @@
+src/tex/*.aux
+src/tex/*.log
+src/tex/*.out
+src/tex/*.pdf
+src/tex/*.toc

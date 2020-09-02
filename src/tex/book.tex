@@ -1,0 +1,790 @@
+% Loving The Prophet
+\documentclass[twoside,openright]{book}
+
+\usepackage{afterpage}
+\usepackage[toc,page]{appendix}
+\usepackage{cite}
+\usepackage{xunicode,xltxtra}
+\usepackage{changepage}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage{fancyhdr}          % Customized page headers.
+\usepackage{fontspec}
+\usepackage[hidelinks,
+            pdfpagelayout=TwoPageRight,
+            pdftitle="A\ Profile\ of\ Dir\ with\ Agricultural\ Background",
+            pdfauthor="Mohammad\ Faheem",
+            pdfcreator="XeLaTeX"]{hyperref}
+\usepackage{longtable}
+\usepackage{ltxtable}
+\usepackage{multicol}
+\usepackage{paracol}
+\usepackage{pgfplots}           % Required for inserting graphs
+\usepackage{polyglossia}
+\usepackage{url}
+\usepackage{geometry}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{titling}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{booktabs} % To thicken table lines
+\usepackage{bidi}% this should be the last package to load.
+
+% Build with: xelatex particles.tex
+% Spell check files with: aspell check --mode=tex <filename>
+
+% Allow insertion of a blank page.
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+
+% Line breaking options.
+% The tolerant environment allows the tolerance to be adjusted for a range of
+% paragraphs. For example:
+%
+% \begin{tolerant}{600}
+%   <paragraph content>
+% \end{tolerant}
+%
+\emergencystretch=5pt
+%\tolerance=600
+\newenvironment{tolerant}[1]{%
+  \par\tolerance=#1\relax
+}{%
+  \par
+}
+
+\titleformat{\chapter}[display]
+  {\normalfont\Large\bfseries}
+  {\chaptertitlename\ \thechapter}{20pt}{\LARGE}
+
+\titlespacing*{\chapter}{0pt}{24pt}{24pt}
+
+\titleformat{\section}[hang]
+  {\normalfont\large\bfseries}
+  {}{0pt}{\large}
+
+\setmainlanguage{english}
+\setotherlanguage{arabic}
+\geometry{
+  paperwidth=5.5in,
+  paperheight=8.25in,
+  outer=0.75in,
+  inner=0.75in,
+  top=20mm,
+}
+
+% Setup the page headers using fancyhdr
+\pagestyle{fancy}
+\fancyhead[OR,LE]{\thepage}
+\fancyhead[ER]{\leftmark}
+\fancyhead[OL]{\rightmark}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\chaptermark}[1]{%
+    \markboth{\textsc{#1}}{}}
+\renewcommand{\sectionmark}[1]{\markright{\textsc{#1}}}
+
+% There are no footers.
+\fancyfoot{}
+
+% Use Garamond in the title, to add interest
+\newfontfamily\titlefont[Scale=1.5]{Cormorant Garamond}
+
+% Use Go for emails and URLs
+\newfontfamily\emailfont[Scale=0.85]{Go Mono}
+
+%\newfontfamily\arabicfont[Script=Arabic,Scale=1.2]{KFGQPC Uthmanic Script HAFS}
+\newfontfamily\arabicfont[Script=Arabic,Scale=1.2]{KFGQPC Uthman Taha Naskh}
+%\newfontfamily\arabicfont[Script=Arabic,Scale=1.2]{Scheherazade}
+\let\ayah\textsuperscript
+\def\diptote{\textsuperscript{2}}
+
+% A transliterated word.
+\newcommand{\transl}[1]{\emph{#1}}
+
+% Sallalahu-alayhi-wasallam
+\newcommand{\saws}{~\textarabic{ﷺ}}
+
+% A prophetic saying
+\newcommand{\hadith}[1]{\tsmallcaps #1}
+\def\tsmallcaps #1 #2 {\textsc{#1 #2 }}
+
+% A reference to a book
+\newcommand{\bookref}[1]{\emph{#1}}
+
+% This is the relevant environment
+\newenvironment{CenteredLastLine}%
+   {\setlength{\leftskip}{0pt plus.5fil}\setlength{\rightskip}{0pt plus-.5fil}\setlength{\parfillskip}{0pt plus1fil}}{\par}
+
+% An Ayah with translation
+\newcommand{\tayah}[2]{
+\begin{quote}
+\begin{center}\begin{Arabic}#1\end{Arabic}\end{center}
+\vskip 12pt
+\begin{CenteredLastLine}
+#2
+\end{CenteredLastLine}
+\end{quote}
+}
+
+% Sections do not show a leading section numbers.
+% https://tex.stackexchange.com/questions/136527/section-numbering-without-numbers
+\makeatletter
+% we use \prefix@<level> only if it is defined
+\renewcommand{\@seccntformat}[1]{%
+  \ifcsname prefix@#1\endcsname
+    \csname prefix@#1\endcsname
+  \else
+    \csname the#1\endcsname\quad
+  \fi}
+% define \prefix@section
+\newcommand\prefix@section{}
+\makeatother
+
+% Define the \rom command to allow easy type-setting of Roman numerals
+\makeatletter
+\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
+% Don't allow the last line of a paragraph onto a new page. Similarly, do not
+% leave the first line of a paragraph all alone on the previous page.
+\widowpenalties 2 1000 0
+\clubpenalties 2 1000 0
+\raggedbottom
+
+\title{Loving the Prophet}
+\author{}
+\date{}
+
+\begin{document}
+\pagenumbering{gobble}
+\begin{titlingpage}
+\let\cleardoublepage\clearpage
+\calccentering{\unitlength}{-0.7cm}
+\begin{adjustwidth*}{\unitlength}{-\unitlength}     % Adjust center
+    \begin{adjustwidth}{-1cm}{-1cm}                 % Extra large front page
+      %\begin{tikzpicture}[remember picture, overlay]
+      %  \draw[line width = 2pt] ($(current page.north west) + (5mm,-5mm)$) rectangle ($(current page.south east) + (-5mm,5mm)$);
+      %\end{tikzpicture}
+      \begin{center}
+      {\textbf{\titlefont{\textsc{\Large{A\ Profile\ of\ Dir\ with\ Agricultural\ Background}}}}} \\
+      \vspace{0.25cm}
+      {\Large{\begin{Arabic}صلى الله عليه وسلم\end{Arabic}}}
+
+      \vspace{2.8cm}
+      \includegraphics[width=3in]{./cover.eps}
+      \vfill
+      \textsc{\Large{By Mohammad Faheem}}
+
+      \vspace{5mm}
+      \textit{\large{Translated from the original Arabic}}
+
+      \end{center}
+    \end{adjustwidth}
+\end{adjustwidth*}
+\end{titlingpage}
+
+\begin{titlingpage}
+\let\cleardoublepage\clearpage
+\vspace*{\fill}
+
+\noindent \textsc{Muslim American Society} \\
+712 H Street NE, Suite 1258 \\
+Washington, DC 20002 \\
+{\emailfont muslimamericansociety.org}
+
+\vspace{12mm}
+
+\small{
+\noindent Copyright © 2019 by \textsc{Muslim American Society (MAS)}. \\
+All rights reserved. No part of this publication may be reproduced, stored in a
+retrieval system or transmitted in any form or by any means, electronic,
+mechanical, photocopying, recording or otherwise, without the prior written
+permission of MAS.
+
+\vspace{3mm}
+\noindent Published by MAS Publications, Washington, DC.
+\vspace{5mm}
+
+\noindent Interior design by Amin Ahmad ({\emailfont amin.ahmad@gmail.com}). \\
+Cover design by Mustafa Hannigan. \\
+Printed in the U.S.A. \\
+\vspace{2mm}
+
+\noindent ISBN 978-0-9792113-0-0
+}
+\end{titlingpage}
+
+\setcounter{page}{3}
+\tableofcontents
+
+\mainmatter
+\chapter{Preface}
+
+It is a three decade period that Dir District, until recently a state, has been
+in the pace of development. Many agencies have been working in this very
+backward area. They include regular Govt. Departments, the local councils, the
+Rural Development Department and others. Alongside constructive works,
+destructive activities have also been there which have caused a great damage and
+there is a greater need now for curative measures. References would be made to
+such subjects in the coming pages.
+
+Nonetheless, much more has been done and a good step forward has been taken in
+the economic development of the area. If a man who left this district two
+decades ago, is again visiting the area, he would find it quite a different
+environment. He would be seeing quick means of transport, some good pieces of
+road, good trade and business and above all a net work of educational
+institutions in the area. One cannot shun off the memory of the tough journey by
+road when one could travel from Dir to Chakdara in not less than nine long hours
+in the buses of old fashion.
+
+We find that there is a net work of feeder roads even to small villages up in
+the mountains and the toyota pick-ups have brought a revolution in getting at
+these distant point which previously could only be reached after a day long toil
+and tough footwalk. There has been quite a visible development in the
+infrastructure and we see villages lit up with electricity every where. There
+are suspension bridges, roads, schools, hospital, veterinary centres, offices
+and every thing related to the concept of modern development. Inspite of all
+these, there is still a great need for accelerated development and much more
+have to be done for the betterment of the masses specially the small farmers.
+
+One of the negative development in this district is the increased production of
+poppy during the past few years. It has got its own reasons and this crop has
+now become a need of the people specially in the valleys of Sultankhel, Usherai,
+Niag, Tormang and Karo to whom a new name as Eastern Valleys has been given.
+Some people have argued that poppy cultivation is a long old tradition of the
+area. This is an incorrect statement. Poppy has never been a cash crop of the
+area specially during the reign of Nawab, the late Shah Jehan who ruled the area
+for 35 long years (1925--1960). He had a very stern fist and would not allow
+anybody to go for poppy. However growing of few plants for domestic or medicinal
+purposes were not uncommon.
+
+With the advent of new era, Dir saw three different periods in which the focus
+of attention were three income sources or fields. A period of timber business
+when the  ex-kingdom was finished in 1960. With the introduction of Forest
+Department in the  new set up, the forest business became the main source of
+income and this was the most lucrative field for many people. The  first forest
+road was opened connecting Dir and Kohistan. There hummed up the contractor, the
+forestman, the capitalist and every one else and the destruction of forest trees
+started. Some people became  millionaires at the cost of the reserved forest
+wealth. After some years the game slowed down and there was general overturn
+towards the Middle-East and Gulf states in order to earn more and to keep a
+better standard. People used every thing possible to get into the Gulf States.
+Even fake visas were used for this purpose.
+
+The peak was the seventies and early eighties when people managed to go out in
+great number to the Arab states. They did not invest their hard earned money in
+any profitable business but started building pacca houses to be furnished with
+modern amenities. They found little jobs on return and had to search for new
+sounce of income. They could find none except the ``Drug Business''.
+
+There was a heavy demand for the white powder and raw opium and the business
+thrived well. On the basis of the ``supply and demand'' the cultivated area
+increased under the poppy crop and it took a heavy toll when the attention of
+all the people was diverted to its alarming proportions. The west was greatly
+affected as the drug addiction there increased at an alarming rate. They had to
+do something to curb the evil. The current strategy is to strengthen enforcement
+on the trafficking. But on the production side the policy is to develop the
+areas through the development process to such an extent that income starts
+accruing from income generating schemes.
+
+The scope of this work is very limited and cannot encompass the whole past,
+present and future of the district with reference to the development process.
+However, a little can be mentioned of the green sector in an elaborated form
+since the development of the area is directly dependent on Agriculture as more
+than 85\% of the population is connected in one way or the other to this
+profession.
+
+The story of Dir remains incomplete when it is separated from that of the ruling
+dynasty of the ex-state. There is very little information available about the
+history of the ex-state. It is for that reason that a small account will be
+given of the ex-ruling dynasty so as to have a background of the area. It is
+specially important for those who are engaged in one way or another, in the
+development works of Dir that they should know a little bit of the historical
+background of the district.
+
+We are thankful to all the officers and functionaries of the Nation Building
+Departments, specially officers of the Agriculture, Livestock, FDC and staff of
+the DDDP, who helped us by supplying necessary information on different items.
+Our thanks are also due to Mr. V. Venturello the Officer in charge, TSU who
+encouraged us and offered facilities for getting this booklet released. Mr.
+Jehangi Khan, Mr. Gul Wali Khan, Mr. Sultan Rome Mr. Riaz and other of the TSU
+deserves our special thanks for their good work of getting the manuscript typed
+and computerized.
+
+We Mohammad Fahim and Abu Saeed hope that this small book will be of special
+interest to those engaged in the development activities in Dir District.
+
+
+\chapter{Dir}
+\section{Introduction}
+
+Dir is one of the backward districts of the N.W.F.P., situated in the North West
+of the Province. It joins Afghanistan and Bajaur on its western side. In the
+North it is separated from Chitral by the famous Lowari top. In the east it goes
+parallel to the district of Swat and in the south it joins Malakand Agency. The
+importance of the district further increase when it is seen through the angle of
+its peculiar geographical situation. It has been bestowed with natural resources
+of forest, water and fertile soil. There is every possibility of precious mines
+wealth if exploited.
+
+The total reported area is 269,200 hectare. The cultivable
+area has been estimated to be 95,100 hectare with a culturable
+waste land reported to be 1,420 hectare. Out of the total
+cultivable area about 59,000 hectare are irrigated. Area under
+forest has been reported as 162,400 hectare. The elevation range
+from 650 to 4,500 meters. The range of humidity has been
+calculated as 59.9 the lowest and the highest as 73.42, with 63.35
+as average. The annual precipitation is 700 mm with the
+temperature range from $-2$°C to 38°C.
+
+The altitude of some of the important places are:
+
+\begin{center}
+\begin{tabular}{ l r l }
+ Chakdara & 700 M &  \\
+ Timergara & 900 M &  \\
+ Wari & 1,000 M & \\
+ Dir & 1,500 M & \\
+ Lowari & 3,500 M & (the pass is 3,118 M) \\
+ Sharingal & 1,200 M & \\
+ Thal & 1,800 M & \\
+ Kumrat & 2,200 M & \\
+ Tarpatar & 1,400 M & \\
+ Gorkooi & 2,200 M & \\
+ Palam & 1,600 M & \\
+ Samar Bagh & 1,000 M & \\
+\end{tabular}
+\end{center}
+
+Population shown on record is 769,000. It seems to be doubtful. According to a
+recent reliable estimation at present the population may be as high as 1.1
+Million (the 1991 census figures are yet to be published). Administratively Dir
+has been divided into 4 Sub Divisions, 11 Tehsils and 50 Union Councils. (This
+has been shown on the chart No.1). The number of farm families have been
+estimated as 127,250.
+
+The average holding size with \% age is given as below:--
+
+\begin{center}
+\begin{tabular}{ l l c r }
+1. & Under 1.00 & Acres & 20\% \\
+2. & 1 to 2.5 & " & 51\% \\
+3. & 2.5 to 5 & " & 16\% \\
+4. & 5 to 7.5 & " & 7\% \\
+5. & 7.5 to 12.5 & " & 4\% \\
+6. & 12.5 to 25 & " & 2\% \\
+7. & \multicolumn{3}{l}{25 to 50 Acres and above Very nominal} \\
+\end{tabular}
+\end{center}
+
+
+The land tenure situation of the district is:
+
+
+\begin{center}
+\begin{tabular}{ l l l }
+ Pure Tenants & 19.8 & \% \\
+ Tenants owing lands & 21.41& \% \\
+ Owners operators & 58.78 & \% \\
+\end{tabular}
+\end{center}
+
+Area under major crops estimated in hectare is as follow. (These figures are
+based quite on estimation as no regular revenue system is existing.)
+
+\begin{center}
+\begin{tabular}{ l l r r r }
+\hline
+ & Crop & Irrig Area & Un-irrig Area & Total \\
+\hline
+1. & Wheat & 17,275 & 22,418 & 39,693 \\
+2. & Rape & --- & 6,760 & 6,760 \\
+3. & Maize & 9,460 & 5,190 & 14,650 \\
+4. & Rice & 15,808 & --- & 15,808 \\
+5. & Onion & 2,400 & --- & 2,400 \\
+6. & Tomato & 1,300 & --- & 1,300 \\
+7. & Poppy & 2,500 & 300 & 2,800 \\
+8. & Moong/Mash & 2,800 & --- & 2,800 \\
+9. & Beans & 600 & --- & 600 \\
+10. & Potato & 1,525 & --- & 1,525 \\
+11. & Barley & 500 & 7,000 & 7,500 \\
+12. & Deciduous & & & \\
+ & Fruit Orchards & 2,000 & --- & 2,000 \\
+13. & Citrus Orchards & 500 & --- & 500 \\
+14. & Walnut Trees & --- & --- & 180,000 \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Climate and Natural Vegetation}
+
+The climatic conditions of the district show great variation
+due to different physiographic features specially altitude.
+Different types of vegetation is seen throughout the area. The
+area can be divided into 4 different sub climatological zones which
+are briefly discussed below:--
+
+\subsection{Sub Humid Tropical Zone}
+
+The south eastern and south western parts comprising the areas of Timergara,
+Talash, Maidan and Jandool with their mountainous belt comprises this part where
+the altitude range is 600 to 1,500 meters with annual precipitation range from
+500--1,000 mm. The mean temperature in this zone remains above 10°C. for more
+than 8 months of the year. The natural vegetation in this zone includes mainly
+quercus spp (Banj) Olea cuspidata (Kau) Acacia modesta (Paloosa) Dadonaea
+Viscosa (Sanatha) and others. At the comparatively high altitude Pinus rox
+burgii (Chir) is also found as natural vegetation. Unfortunately this valuable
+forest tree has been under the cruel cutting process for the last few decades
+and very little replenishment is  done on community basis.
+
+\subsection{Pine Zone}
+
+This zone is at 1,200--2,300 meters with severe cold winters and mild summers.
+Pine forest and range land constitute this zone. Natural forest are \emph{Pinus
+roxburgqii} (Chir) \emph{Pinua sallichina} (Kail) and pinus species (Chalghoza).
+Chir pine usually occurs below 1,700 meters while Kail and Chalghoza above up to
+2,300 altitudes. Some Cedarus deodara (Diyar) also occurs on higher altitude.
+Only one crop is possible in the upper limits of this zone due to snow falls.
+Major crops are wheat, barley, maize and potatoes. This zone has good potential
+for off season vegetables.
+
+\subsection{Fir Zone}
+
+It is steep mountainous zone 2,300--3,200 meters altitude with severe winters
+and pleasant cool summers. Natural vegetation includes \emph{Cedarus deodara}
+(Diyar) which is the main pine up to 2,400 meter. Above this is FIR and broad
+leave species likely Banj. Timber production is the characteric of the zone.
+
+\subsection{Alpine Pastures}
+
+This zone is between 3,200--4,800 meters high which remains frozen for the most
+part of the year. Only a short freeze free season permits plant growth. There is
+some vegetation in the lower part but the higher portions remain naked when
+unsheltered by snow covers.
+
+\section{Sub Division/Tehsils Union Councils and Population}
+
+\subsection{Sub Division}
+
+This district has been sub divided into four sub Givisions, administratively
+viz, Timergara, Samar Bagh, Wari and Dir.
+
+\subsection{Tehsils}
+
+Each sub division consists of different number of tehsils. Timergara is composed
+of four tehsils i.e. Timergara, Balambat. Lal Qilla and Adenzai. Samar Bagh has
+got two tehsils, Munda and Samar Bagh. Wari is divided into two tehsils i.e.
+Wari and Khal. Dir Sub Division consists of three tehsils of Dir, Barawal ana
+Kalkot.
+
+\vspace{5mm}
+
+% https://tex.stackexchange.com/questions/5073/making-a-simple-directory-tree
+
+\begin{tikzpicture}[every node/.style = {shape=rectangle, draw, align=center}]]
+  \node {Dir \\ (4 Sub.Div)}
+    child {
+      node {Timergara}
+      child { node {Timergara \\ 3 U.C. } }
+      child { node {Balambat \\ 5 U.C. } }
+      child { node {Lal Qila \\ 5 U.C. } }
+      child { node {Adenzai \\ 5 U.C. } }
+    }
+    child {
+      node {Samar bagh}
+      child { node {Munda \\ 3 U.C. } }
+      child { node {Samar Bagh \\ 4 U.C. } }
+    }
+    child {
+      node {Wari}
+      child { node {Wari \\ 8 U.C. } }
+      child { node {Khal \\ 2 U.C. } }
+    }
+    child {
+      node {Dir}
+      child { node {Dir \\ 10 U.C. } }
+      child { node {Barawal \\ 3 U.C. } }
+      child { node {Kalkot \\ 2 U.C. } }
+    }
+\end{tikzpicture}
+
+\vspace{5mm}
+\begin{enumerate}
+  \item Total Sub Divisions: 4 Nos
+  \item Total Tehsils: 11 Nos
+  \item Total Union Councils: 50 Nos
+\end{enumerate}
+
+
+\chapter[From a Kingdom to the status of a District]
+        {Dir---Its March from a Small Kingdom to the status of a District%
+          \chaptermark{From a Kingdom to the status of a District}}
+\chaptermark{From a Kingdom to the status of a District}
+
+\section{Sultan Khel and Painda Khel}
+
+\textsc{The Origin}: Tarkan and Yousaf were two brothers, originally belonging
+to Ziada (Sawabi) in the 13 century A.D. The descendants of Tarkan are called as
+Tarkani and the tribes occupying the area of Salarzai, Mamoond and Utman Knel in
+Bajaur and the area of Maidan, Jandool and the area of Barawal up to Ganori and
+Salamkot in Dir District.
+
+The descendants of Yousaf are called as Yousafzai and they are prevailing in the
+areas of Buner, Mardan, Sawabi, Swat, Dir, Sind (the area of Dir District from
+Rabat downward on both side the Panjkora river up to the foot of Kamrani) Talash
+and Adenzai. In the north Yousafzai tribes are present up to Sharingal Gadgadeen
+(the barrier between Kohistan and Sharingal).
+
+Paind whose descendants are called as Painda Khel, is the grand-grand-grand son
+of Yousaf. The link goes like this: Painda son of Ghori, son of Kahay, son of
+Akoo son of Yousaf. Therefore, they are called Yousafzai.
+
+Painda's father Ghori lived in Nikpi Khel, Swat. After his death his wife
+migrated to Kuhna Dher (now called as Haji Abad) a few kilometers ahead of
+Balambat. The mother brought this child in her lap. She was later on married to
+a man called as Maly Baba. Sultan was the child of Maly Baba from this woman.
+Thus Painda and Sultan were brothers from the same mother.
+
+\section{Maly (14\textsuperscript{th} Century)}
+
+Maly is the grand father of Malizai tribe. He was the son of Khwajur, son of
+Akoo son of Yousaf. Maly was called as Maly Baba because he was respected in the
+area for his religious preaching and also political domination. his influence
+was prevalent in Sind, Maidan, Barawal and Kohistan.
+
+Maly Baba had two sons, Awsa Khan and Nusrat Khan from his first wife. A third
+son Sultan was born from the newly married widow, the mother of Painda. Maly
+after whose name his descendants are called as Malizai tribe. sub divided his
+landed property and estate among his sons. He also gave share to his step-son
+Painda.
+
+\section{Distribution of the Area and Landed Property}
+
+The area from Akhagram to Koto Kuhna Dher (now called as Haji Abad)
+was given to Nusrt Khan. In addition the area westwards up
+to Khkuly Gaty Haya Serai, was also added to it. It is after the
+name of Nusrat Khan that the people of these areas are called Nuradin Khel.
+
+The territory from Koto to Walai Kandaw, Talash, Sado to Ashari Gat was allotted
+to Awsa Khan. Therefore, the people occupying these areas were termed as Awsa
+Khel. This area also includes Timergara, Andheri, Balambat and Malakand.
+
+The area from Khal to Khan Kas (Darora) on the right side of river Panjkora was
+given to Sultan. In addition, the area including Tormang called as Dalkha Khel
+right to Asbanr through the hill-tops was also given to Sultan. The area on the
+right side of Panjkora river covering Kotki, Pataw and the lower parts alongside
+the Panjkora river were also given to Sultan. Now these areas on the right side
+of the river are the property (Dawtar) of Sultan Khel.
+
+Painda was given comparatively less fertile and to some extent barren parts
+consisting of un-irrigated patches and rough terrain. It included the area
+stretching from Akhagram up to the top peaks of Shalga to Shumai and Jabai, the
+farthest boundaries of Usherai Dara which are the barriers with Swat. This was
+the domain of Painda now called as Painda Baba. It also included Lar Jam, Urtha
+Sind, Atan etc. The area from Khal bazar to Akhagram on the left side of
+Panjkora is also the property of Sultan Khel. The area along the NCC road from
+Akhagram to Darora (Khan Kas) is the property of Painda Khel.
+
+Alongside these big tribes there also live in these areas some other small
+sections of other tribes seeking cover and protection of these big ones. They
+include tribes like Utman Khel, Swati, Roghani, Shinwari, Dalazak, Wardag, Gujar
+etc. These tribes have now also flourished well alongside the dominant tribes.
+
+\section{Painda and His Sons (Painda= 1500--1565)}
+
+Painda Baba had two sons named Mubarak Khan and Musa Khan. By the time Painda
+was intending to subdivide his area of control between his two sons, Mubarak
+Khan and Musa Khan, the later died leaving his son Bahamat Khan to succeed him
+as legal heir. The grand father was kind enough to allow Bahamat Khan the share
+his father would have received had he been alive at the times of property
+distribution.
+
+
+The villages of Dugram, Kot, Mula Gujar, Diskor, Jatgram,
+Kakad, Badalai, Niag, Bandai, Ari Manzai, Qadar, Mathorh, Khandar
+and Kuwan with their shamilats all in Niag Dara were given to the
+grand son Bahamat Khan. (1580--1636)
+
+\section{Akhoond Ilyas (Akhoon Baba) (1626--1708)}
+
+Akhoon Ilyas son of Brahim son of Bahamat Khan son of Musa Khan son of Painda
+was a saintly man. He was in search of some ``Murshad'', and finally reached
+Sheikh Adam, commonly known as Hazrat Binor. He was preaching religion in Delhi.
+This was the time when Shah Jehan was ruling India. The emperor had banned the
+entry of Hazrat Binor into Delhi. He cam to Bombay and was given protection by
+Crown Prince Aurang Zeb, Alamgir the famous saintly type king of the Mughal
+empire. Prince Aurang Zeb Alamgir managed to send Hazrat Binor to Hajj via Adan.
+
+Akhoon Ilyas accompanied Hazrat Binor and performed pilgrimage at Mecca.
+Therefrom he returned to his homeland in order to preach religion. The Murshad
+gave him a pair of shoes and beeds as a token of sacred belongings which were
+kept as sacred legacy by the ruling dynasty in their custody in succession. The
+Akhoon became an important religious personality to whom people diverged from
+far and wide including the area of Bajaur, Swat and Buner in order to get
+spiritual values and exaltation. By that time Dir was inhabited by infidel
+people and were called as ``Black Kafirs''.
+
+Prior to this saintly man another Akhoon called Akhoon Salak had also come to
+this area from Peshawar in order to preach religion and fight against the
+infidelity prevailing in the area.
+
+By the time Akhoon Baba came here two main tribes Painda Khel and Sultan Khel
+had flourished well and were the two powerful entities to be reckoned to in this
+area.
+
+Akhoon Baba continued his religious call and preaching with zeal and devotion.
+This call attracted people from all walks of life and from different places
+bringing with them valuables and cash to be offered as gratifications. Similarly
+people offered him arable lands as gratitude locally called (Serai or Shukrana).
+The dynasty flourished becoming powerful both worldly as well as religiously.
+They had a strong hold and dominance over the masses. This status continued in
+the sons and grand sons of Akhoon.
+
+\section{Mullah Ismail (1708--1782)}
+
+Akhoon Baba had his son named Mullah Ismail. This man was also a religious
+preacher and a man of virtues. He is buried on the opposite side of village
+Bibyawar across Panjkora, in the name of "Loe Baba" (Grand fatherly man).
+
+\section{Ghulam Khan (1782--1808)}
+
+Mullah Ismail was succeeded by his son Ghulam Khan who had enough quantity of
+worldly belongings including land, weaponry and cash. This man started craving
+for attaining the status of a Khan alongside with religious leadership of which
+the dynasty was custodian.
+
+\section{Khan Zafar Khan (1808--1814 Chiefdom)}
+
+Zafar Khan was the son of Ghulam Khan who came out as a powerful Khan setting
+aside the religion guise and tried to bring under control the neighboring
+tribes. He left Bibyawar and settled in Dir as the ruling Khan of Dir. However
+he died soon and was buried on the left side of Panjkora near village Bibyawar
+in the name of Warooki Baba (Small Baba).
+
+\section{Qasim Khan (Khan Shaheed) 1814--1822}
+
+Qasim Khan was the son of Zafar Khan. He succeeded his father
+and became Khan of Dir. His other brothers were Naseem Khan, Zahir
+Khan and Bakoo Khan. The Akhoon Khel presently available in
+Samkot, Batal, Ker Dara and Rokhan are the sons of these brothers.
+% TODO: Is it Rokhan or Rokhar above?
+
+Qasim Khan expanded the ``Khani'' of Dir, consolidated his
+position and merged out as an aristocratic ruler of the area. He
+married the sister of the Wali of Chitral called as Shah Kator.
+
+\section{Assassination of Qasim Khan}
+
+Qasim Khan had four sons named Ghazan Khan, Muhammad Said Khan, Azad Khan and
+Sadullah Khan. Qasim Khan was assassinated by his son Azad Khan. He is buried in
+Dir proper in the name of Khan Shaheed, just at the foot of the royal palace
+Dir.
+
+\section{Ghazan Khan (1822--1866)}
+
+Qasim Khan was succeeded by his son Ghazan Khan who was from
+the wife named Khunza Bibi, the sister of Shah Kator, Wali of
+Chitral. Ghazan Khan was ascended to the throne at an age of 17
+years. He killed some of his brothers and exiled the rest. He
+expanded his domain to Asmar in the west, to Gad in north and in
+the south to Sakhakot and in the east to Swat. He ruled for 46
+long years.
+
+Ghazan Khan was now a typical ruler Khan and gradually the Babaism (a term
+carrying religious connotation) had now started to shapen itself into Khanism
+with a stronger fist of rulership or at least with an identity of a tribal
+eldership. The ruler was not only respected but he also exercised a self
+determined authority of power.
+
+\section{Khan Rahmatullah Khan (1866--1880)}
+
+The nominated successor Rahmatullah Khan took the helm of the affairs after the
+death of his father Ghazan Khan. He ruled till his death in 1880. Rahmatullah
+Khan generally called locally as Ramatullah Khan is buried in Dir. Rahmatullah
+Khan had ten sons; Mohammad Sharif Khan, Sher Mohammad Khan, Hayatullah Khan,
+Jamroz Khan, Ashraf Khan, Sikandar Khan, Datullah Khan, Shah Nasim Khan, Dilaram
+Khan and Rosham Khan. While still alive Rahmatullah Khan distributed the areas
+of his domain amongst his sons.
+
+Mohammad Sharif Khan who was the crown prince and also the Commander-in-Chief of
+the army turned against his father and created great problem for him,
+instigating different tribes to rise against the ruler. He invited Umara Khan
+against his father. Umara Khan captured a number of fortresses of Rahmatullah
+Khan in the area of Sind. After the death of Rahmatullah Khan in 1880, Mohammad
+Sharif Khan quickly moved from Sharingal and succeeded his father as ruler of
+Dir.
+
+\section{Mohammad Sharif Khan (1848--1904) Ruled from 1880--1890 and 1895--1904}
+
+Mohammad Sharif Khan is the man in the series who was formally declared as Nawab
+by the Britishers. Mohammad Sharif Khan had escaped an assassination attempt by
+his brother Jamroz Khan. He killed Jamroz Khan and his son and began to rule the
+State but had a number of adventurous events during his tenure as the Nawab so
+much so that he had the sad experience of exile. An account of his life will be
+given in the coming pages.
+
+Mohammad Sharif Khan had four sons. Amongst them Mian Gul Jan and Aurangzeb Khan
+were from one mother and the other two i.e. Sultan Mohammad Khan and Mohammad
+Issa Khan were from other two mothers. Mohammad Sharif Khan divided the state
+amongst his sons.
+
+Mian Gul Jan, whose real name was Shah Rawan, was given Munda in Jandool and
+Sharingal in Urtha Sind. Sultan Mohammad Khan known as Sangar Khan was given
+Sadbar Killi in Jandool and Dog Dara in Dir Tehsil. Mohammad Issa Khan known as
+Darory Khan was given Darora, Jughabanj, Manoogay etc. Aurang Zeb who succeeded
+Sharif Khan as ruler of the State was also known as "Dumb Nawab", though ill and
+paralyzed to some extent, he had all the qualities of a good ruler. He succeeded
+his father as ruler of the State.
+
+
+\section{Nawab Aurang Zeb (Badshah Khan) (1904--1925)}
+
+Born in 1874, Nawab Aurang Zeb ruled the State for 21 years (1904--1925). He had
+four sons. Amongst them the two i.e. Shah Jehan and Alam Zeb Khan were from one
+mother. She was a maid servant in the house of the Nawab and came from village
+Bilachand in Barawal area. This beautiful woman was married by the Nawab Aurang
+Zeb Khan. The third son named Bacha or Badshah who was from the daughter of a
+famous Malik of Swat called Chaman Malak died at an early age. The fourth son
+Bakht Jehan Zeb Khan known as Khan of Timer is still living and commands a very
+good reputation. He is very noble man and takes keen interest in the well being
+and progress of the area. He has proved himself to be the custodian of good and
+positive traditions of the dynasty. His mother was the sister of the famous
+Mehtar of Chitral Sir Shujaul Mulk.
+
+Nawab Aurang Zeb declared Shah Jehan as crown prince during his life.
+
+\section{Nawab Sir Shah Jehan Khan (1925--1960)}
+
+Nawab Shah Jehan was declared as legal Nawab of the State in 1925, after his
+father's death. The Chief Commissioner of the NWFP through a notification
+declared him as the Nawab. In 1926 the Viceroy visited the area and met Shah
+Jehan. In 1929 again the Nawab had a meeting with the Viceroy while he was on a
+visit to the State. In the year 1930 the Viceroy again paid visit to this part
+of the province and went up on to the Kamrani top.
+
+There was tussle between Shah Jehan and Alam Zeb Khan and both had groups of
+influential Maliks and Khans on their sides. Finally Nawab Shah Jehan succeeded
+in exiling Alam Zeb Khan from the State. He sought refuge in Khar Bajaur. In the
+year 1931 an agreement was reached between Nawab Shah Jehan and the Khan of
+Khar. Under this agreement the Khan of Khar was now bound not to give refuge to
+Alam Zeb and he went to Utman Khel Area.
+
+Nawab Shah Jehan was a man of old traditions. He did not like the people to
+receive modern education and kept them ignorant of the latest turn in the
+civilization. He did nothing for the welfare of the public and even did not like
+people going out in search of knowledge and education. The Govt. of Pakistan had
+also to fulfill her obligations to the people of the State. The Nawab was asked
+through the Resident Commissioner to allow the welfare institutions like school
+and hospital in his state, but he always opposed these things. At last the Govt.
+of Pakistan had to take action and dethroned the Nawab on 9 October 1960. He
+remained house arrest in Lahore till his death in 1968.
+
+
+\centerline{✽\quad ✽\quad ✽}
+
+
+\end{document}
