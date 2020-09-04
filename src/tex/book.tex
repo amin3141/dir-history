@@ -10,6 +10,7 @@
 \usepackage{enumitem}
 \usepackage{fancyhdr}          % Customized page headers.
 \usepackage{fontspec}
+\usepackage{forest}
 \usepackage[hidelinks,
             pdfpagelayout=TwoPageRight,
             pdftitle="A\ Profile\ of\ Dir\ with\ Agricultural\ Background",
@@ -90,6 +91,8 @@
 % There are no footers.
 \fancyfoot{}
 
+\setmainfont{Adobe Caslon Pro}
+
 % Use Garamond in the title, to add interest
 \newfontfamily\titlefont[Scale=1.5]{Cormorant Garamond}
 
@@ -98,6 +101,7 @@
 
 %\newfontfamily\arabicfont[Script=Arabic,Scale=1.2]{KFGQPC Uthmanic Script HAFS}
 \newfontfamily\arabicfont[Script=Arabic,Scale=1.2]{KFGQPC Uthman Taha Naskh}
+\newfontfamily\pashtofont[Script=Arabic,Scale=1.35]{Arabic Typesetting}
 %\newfontfamily\arabicfont[Script=Arabic,Scale=1.2]{Scheherazade}
 \let\ayah\textsuperscript
 \def\diptote{\textsuperscript{2}}
@@ -170,51 +174,56 @@
       %  \draw[line width = 2pt] ($(current page.north west) + (5mm,-5mm)$) rectangle ($(current page.south east) + (-5mm,5mm)$);
       %\end{tikzpicture}
       \begin{center}
-      {\textbf{\titlefont{\textsc{\Large{A\ Profile\ of\ Dir\ with\ Agricultural\ Background}}}}} \\
+      {\textbf{\titlefont{\textsc{\Large{A\ Profile\ of\ Dir}}}}} \\
       \vspace{0.25cm}
-      {\Large{\begin{Arabic}صلى الله عليه وسلم\end{Arabic}}}
+      {\textbf{\titlefont{\textsc{\textit{with\ Agricultural\ Background}}}}} \\
 
       \vspace{2.8cm}
-      \includegraphics[width=3in]{./cover.eps}
+      %\includegraphics[width=3in]{./cover.eps}
       \vfill
-      \textsc{\Large{By Mohammad Faheem}}
 
+      {\large{\textit{Written By:}}} \\
       \vspace{5mm}
-      \textit{\large{Translated from the original Arabic}}
+      {\large{\textsc{Mohammad Faheem}}} \\
+      \vspace{2mm}
+      {\large{\textsc{Abu Saeed}}} \\
+      \vspace{2mm}
+      {\large{\textsc{Agricultural Experts}}} \\
+      \vspace{2mm}
+      {\large{\textsc{Technical Support Unit}}} \\
+
+      \vspace{8mm}
+      \textit{\large{for}} \\
+      \vspace{2mm}
+      \textit{\large{Dir District Development Project}} \\
+      \vspace{2mm}
+      \textit{\large{December 1991}}
 
       \end{center}
     \end{adjustwidth}
 \end{adjustwidth*}
 \end{titlingpage}
 
+% Setup the copyright page.
+%
+% Ref: https://tex.stackexchange.com/questions/55691/copyright-page-on-back-of-title-page
+%
 \begin{titlingpage}
 \let\cleardoublepage\clearpage
 \vspace*{\fill}
-
-\noindent \textsc{Muslim American Society} \\
-712 H Street NE, Suite 1258 \\
-Washington, DC 20002 \\
-{\emailfont muslimamericansociety.org}
-
-\vspace{12mm}
-
 \small{
-\noindent Copyright © 2019 by \textsc{Muslim American Society (MAS)}. \\
-All rights reserved. No part of this publication may be reproduced, stored in a
-retrieval system or transmitted in any form or by any means, electronic,
-mechanical, photocopying, recording or otherwise, without the prior written
-permission of MAS.
+This work was typeset with \XeLaTeX{} in 2020 to prepare it for digital
+distribution. Please contact the authors with all comments, inquiries,
+suggestions for improvement, and reports fo errors in the text. Clarifying
+footnotes added by the editor of this edition are preceded in brackets by
+[Ed].
 
-\vspace{3mm}
-\noindent Published by MAS Publications, Washington, DC.
-\vspace{5mm}
-
-\noindent Interior design by Amin Ahmad ({\emailfont amin.ahmad@gmail.com}). \\
-Cover design by Mustafa Hannigan. \\
-Printed in the U.S.A. \\
-\vspace{2mm}
-
-\noindent ISBN 978-0-9792113-0-0
+\vspace{0.5in}
+\noindent
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill} } p{\dimexpr 0.5\linewidth-2\tabcolsep} r}
+\noindent Panjkora Printing Press & \textarabic{\pashtofont{پنجكو\hspace{0.00em}ړا پرنټنګ پريس}} \\
+\emph{at} San Francisco and Dīr & \textarabic{\pashtofont{په دِير او سان فرانسيسكو كښي}} \\
+\end{tabular*}
 }
 \end{titlingpage}
 
@@ -478,39 +487,58 @@ viz, Timergara, Samar Bagh, Wari and Dir.
 Each sub division consists of different number of tehsils. Timergara is composed
 of four tehsils i.e. Timergara, Balambat. Lal Qilla and Adenzai. Samar Bagh has
 got two tehsils, Munda and Samar Bagh. Wari is divided into two tehsils i.e.
-Wari and Khal. Dir Sub Division consists of three tehsils of Dir, Barawal ana
+Wari and Khal. Dir Sub Division consists of three tehsils of Dir, Barawal and
 Kalkot.
 
 \vspace{5mm}
 
 % https://tex.stackexchange.com/questions/5073/making-a-simple-directory-tree
 
-\begin{tikzpicture}[every node/.style = {shape=rectangle, draw, align=center}]]
-  \node {Dir \\ (4 Sub.Div)}
-    child {
-      node {Timergara}
-      child { node {Timergara \\ 3 U.C. } }
-      child { node {Balambat \\ 5 U.C. } }
-      child { node {Lal Qila \\ 5 U.C. } }
-      child { node {Adenzai \\ 5 U.C. } }
-    }
-    child {
-      node {Samar bagh}
-      child { node {Munda \\ 3 U.C. } }
-      child { node {Samar Bagh \\ 4 U.C. } }
-    }
-    child {
-      node {Wari}
-      child { node {Wari \\ 8 U.C. } }
-      child { node {Khal \\ 2 U.C. } }
-    }
-    child {
-      node {Dir}
-      child { node {Dir \\ 10 U.C. } }
-      child { node {Barawal \\ 3 U.C. } }
-      child { node {Kalkot \\ 2 U.C. } }
-    }
-\end{tikzpicture}
+\begin{forest}
+  for tree={
+    text=black,
+    text width=3cm,
+    rounded corners=2pt,
+    grow'=0,
+    child anchor=west,
+    parent anchor=south,
+    anchor=west,
+    calign=first,
+    edge={black,line width=0.35pt},
+    edge path={
+      \noexpand\path [draw, \forestoption{edge}]
+      (!u.south west) +(7.5pt,0) |- (.child anchor)\forestoption{edge label};
+    },
+    before typesetting nodes={
+      if n=1
+        {insert before={[,phantom]}}
+        {}
+    },
+    fit=band,
+    before computing xy={l=15pt},
+  }
+  [Dir (4 Sub.Div)
+    [Timergara
+      [Timergara 3 U.C.]
+      [Balambat 5 U.C.]
+      [Lal Qila 5 U.C.]
+      [Adenzai 5 U.C.]
+    ]
+    [Samar bagh
+      [Munda 3 U.C.]
+      [Samar Bagh 4 U.C.]
+    ]
+    [Wari
+      [Wari 8 U.C.]
+      [Khal 2 U.C.]
+    ]
+    [Dir
+      [Dir 10 U.C.]
+      [Barawal 3 U.C.]
+      [Kalkot 2 U.C.]
+    ]
+  ]
+\end{forest}
 
 \vspace{5mm}
 \begin{enumerate}
@@ -594,7 +622,11 @@ sections of other tribes seeking cover and protection of these big ones. They
 include tribes like Utman Khel, Swati, Roghani, Shinwari, Dalazak, Wardag, Gujar
 etc. These tribes have now also flourished well alongside the dominant tribes.
 
-\section{Painda and His Sons (Painda= 1500--1565)}
+
+\section[Painda (1500--1565) and His Sons]
+        {Painda and His Sons (Painda= 1500--1565)%
+            \sectionmark{Painda (1500--1565) and His Sons}}
+\sectionmark{Painda (1500--1565) and His Sons}
 
 Painda Baba had two sons named Mubarak Khan and Musa Khan. By the time Painda
 was intending to subdivide his area of control between his two sons, Mubarak
@@ -736,7 +768,7 @@ Mian Gul Jan, whose real name was Shah Rawan, was given Munda in Jandool and
 Sharingal in Urtha Sind. Sultan Mohammad Khan known as Sangar Khan was given
 Sadbar Killi in Jandool and Dog Dara in Dir Tehsil. Mohammad Issa Khan known as
 Darory Khan was given Darora, Jughabanj, Manoogay etc. Aurang Zeb who succeeded
-Sharif Khan as ruler of the State was also known as "Dumb Nawab", though ill and
+Sharif Khan as ruler of the State was also known as ``Dumb Nawab'', though ill and
 paralyzed to some extent, he had all the qualities of a good ruler. He succeeded
 his father as ruler of the State.
 
@@ -782,6 +814,227 @@ through the Resident Commissioner to allow the welfare institutions like school
 and hospital in his state, but he always opposed these things. At last the Govt.
 of Pakistan had to take action and dethroned the Nawab on 9 October 1960. He
 remained house arrest in Lahore till his death in 1968.
+
+\section{Mohammad Shah Khisro Khan (1960--1970)}
+
+This somewhat educated and enlightened son of the Nawab was declared as legal
+Nawab after the arrest of his father. The Govt. posted an officer of the rank of
+Additional Political Agent to help the Nawab in the state affairs and
+administration. Regular offices were established and developmental works
+started.
+
+Unfortunately, the Nawab Mohammad Shah Khisro Khan was an easy going person. He
+left every thing to the Government appointed Officers and himself remained out
+of the State for the most part of the year till he completely disappointed the
+people of the State and even his own well-wishers.
+
+It was in the reign of President Yahya Khan in July 1969, when the state of Dir
+was completely merged into Pakistan till it was given the status of District in
+1970.
+
+\chapter{Umara Khan---The Adventurist}
+
+Very short description of Dir has been given in these pages and it in no way can
+cover the details about the ruling dynasty. Nevertheless, the short account
+gives an idea of ``who and how'' to som extent. The story of the ruling dynasty
+of Dir will remain incomplete if a short account of Umara Khan, the adventurist
+is not given. The following few lines are just an introduction of this man of
+courage who fought odd ends and preserved his name in the annals of history.
+
+Umara Khan S/O Aman Khan son of Feztalab Khan were the descendants of a saintly
+person known as Mast Baba. The dynasty is called as Mast Khel after his name.
+
+The original place of birth of Mast Baba is Swara Ghundai near Sadbar Killi in
+Jandool. A powerful man Subedar Mir Alam Khan was ruling the tribes of Bajaur by
+that time on behalf of the Govt in Delhi. The Salarzai tribe of Bajaur had an
+upper hand on the people of Jandool and they would keep them pressed every time.
+On the request of the people of Jandool, the Chief of Bajaur, Mir Alam Khan made
+a demarcation of the area between the tribes of Salarzai (Bajaur) and Mast Khel
+of Jandool. Batwar was given to Salarzai, the upper Barawal was declared as part
+of Jandool and lower Barawal as part of Maidan. A spot called Daky Warbaza was
+identified as boundary between the upper and lower Barawal.
+
+By this time Muhammad Zaman Khan the brother of Umara Khan was the Khan of Barwa
+(Samar Bagh). His mother lived with him. Mohammad Zaman Khan had exiled Umara
+Khan and the other brother Mohammad Shah Khan from Jandool and they lived at
+Swal Qila in Bajaur. They had a miserable life there. One day Umara Khan
+gathered his family members around the hearth and told them that the next day
+they would find him either as the conqueror of Barwa or they would see his dead
+body for burial.
+
+By that time Mohammad Sharif Khan ruled Dir as Khan of Dir. One of the wives of
+Sharif Khan, the mother of Aurang Zeb Khan (the dumb Nawab) named Shahi Bibi was
+the sister of Said Ahmad Khan Mast Khel who was the Khan of Shahi. This Said
+Ahmad Khan was the cousin of Umara Khan. Once someone fired a gun on Sharif
+Khan. He escaped the fire. Shahi Bibi thought that it was Ashraf Khan who had
+fired at the Khan. Ashraf Khan was the step brother of Sharif Khan. Shahi Bibi
+sent a group of men to kill Ashraf Khan.
+
+Ashraf Khan got the information of the plot against him and he escaped to Barwa
+to seek protection of Umara Khan. He was given Sadbar Killi. After settling
+there he instigated Umara Khan to attack Dir to get the possession of the area
+by force. Umara Khan after making all preparations invaded Dir with his Lashkar.
+There were fierce fighting between him and the Khan of Dir, Mohammad Sharif Khan
+at Sundrawal, Dir Khan, Salamkot and Ala near Dir. The Khan of Dir could not
+stand the attack and was defeated.
+
+He left Dir to make his way to the Painda Khel area through the hilltop of
+Girgat east of Dir. After settling in Dir, Umara Khan extended his possession to
+the Painda Khel and Sultan Khel area. Now Sharif Khan had no choice except to
+seek shelter in Swat where he reached via Karo Dara.
+
+There was no central authority or regular rulership in Swat by that time. People
+lived as independent tribes. As such Mohammad Sharif Khan could not find the
+support of some powerful person from Swat.
+
+A step brother of Umara Khan named Mohammad Shah Khan was the Khan of Maskini.
+This man was the son-in-law of Baba Sahib of Rehankot (Dir) (Baba Sahib buried
+at Rehankot, is the grand father of the present Sahibzadagan of Rehankot, Kotki
+and Sawni) Umara Khan returned to Barwa (Samar Bagh) and he nominated the Khan
+of Maskini to manage the Khani of Dir on his behalf. This Mohammad Shah Khan
+remained Khan of Dir for full six years. Umara Khan arrested all the Akhun Khel
+Khans and took them to Barwa after hand cuffing them in one rope.
+
+Sharif Khan now migrated to Afghanistan with hundreds of families. It was the
+time when Amir Abdur Rahman was ruling the country. The companions of Sharif
+Khan included included Abdul Hasan Biland Khan of Dokri, Khan of Maidan Bandai,
+Haji Khan of Maidan (known as Qashqar Khan) the dignitaries from Adenzai,
+Maidan, Larjam, Barjam and Kohistan. While on way, an epidemic broke out at
+Asmar resulting in complete devastation of these migrating families. They all
+were wiped out except a few dozens who could reach Kabul to seek the protection
+of the Amir, the king of Afghanistan.
+
+The king asked his Commander-in-Chief Ghulam Haidar Khan to construct a road to
+Bin Shahi to link Dir so as to envade Umara Khan and reinstall Mohammad Sharif
+Khan as Khan of Dir. This was the time when a defined demarcation line had not
+been established between Afghanistan and the area constituting now the borders
+of Pakistan. The Afghan king would keep two platoons of National Army in Bajaur
+and Mohmand to protect the Frontiers of the country from any possible threat
+from this side.
+
+The General, Ghulam Haidar Khan requested the king that they had been spending
+huge amount just to upkeep a dry barren land (Bajaur) which was an unfruitful
+expensive exercise. The Amir of Afghanistan had already been requested by the
+British to allow Bajaur to their possession in return of Rs.1,800,000. Having
+agreed on the terms a British Officer named Dewrand\footnote{[Ed] Sir Henry Mortimer
+Durand, 14 February 1850 – 8 June 1924} signed for the British and Mohammad Umar
+Khan son of Ghulam Haidar Khan signed as representative of the Afghan Govt. and
+thus the Dewrand line was established.
+
+\section{Return of Sharif Khan to Swat}
+
+Sharif Khan now understood that as a result of the establishment of Dewrand
+Line, the Afghan king could not help him as he was bound by the agreement to
+keep himself within his territory. The Amir of Afghanistan offered him big
+estates and land if he wanted to remain in Afghanistan. Mohammad Sharif Khan had
+great desire for regaining his own homeland, and, therefore, left Afghanistan
+after having received precious gifts and valuables from the Amir. He reached
+Nawagai via Bajaur and remained with the Khan of Nawagai for some time.
+Therefrom he went to Peshawar via Mohamand Agency and stayed as guest with Arbab
+Fareed Khan of Tehkal for a few weeks. He then came to Swat via Palai Sher Khani
+and settled down in Mingora. He purchased a Muhella with Rs.6,000.00. The local
+people gave him ``Pan Chakies''\footnote{Panchaki is the locally made floor mill
+run by water.}, and ``Pekos''\footnote{Peko is the water run mill used for
+unhusking paddy.} and the revenue from Ushar of the lands from upper Swat to
+Thana.
+
+Mohammad Shah Khan had stationed his men in Sultankhel and Niag Dara to control
+the people. He had forcefully imposed Ushar on these people and would collect it
+with irony hands. Sharif Khan had to remain contented with his bad days in exile
+praying for something to happen.
+
+\section{Umara Khan Attacks the British Army}
+
+Umar Khan now made up his mind to attack the British in
+Chitral from his base Barawa. His shura people Amanul Mulk and
+% TODO(aahmad) fix above, shura ***ple
+Munshi Mullah advised him not to take the risk of facing the
+British Army.They told him that as the consequence of his this
+action he would get nothing but only ``English or Persian'' meaning
+% TODO(aahmad) fix above. ***sian?
+that he would fall prey either to the British or to the Afghan
+rulers. However, he turned a deaf ear to the advice and started
+preparation for attacking the British Army in Chitral. He captured
+Drosh Fort after a fierce fight and defeated the Royal Army. The
+British were in a very critical situation. They had the only
+possible way to send their SOS call to Nowshera through a man
+swimming along the river Kunar. (The family of that man in
+recognition of his services with the help of his Shanaz to the
+royal throne is still receiving the honoraria)
+
+\section{The Part Played by Mian Family of Nowshera.}
+
+The local terminology used for the Chief British Officer used
+to be ``Lot'' of the province (Means Lord). The lord named Ding
+appointed Mian Rahim Shah Kakakhel as his chief adviser. He helped
+the British a lot in planning for future advance into the area from
+Nowshera northwards which was by that time the zone out of the
+%TODO(aahmad) time *** zone
+control of the British. On the advice of Mian Rahim Shah, it was
+decided in Peshawar that the real Khan of Dir Muhammad Sharif Khan
+be helped in reinstating him to his rulership in Dir, who will be
+very useful in helping the British in getting further control of
+the free area. A messenger was sent after Sharif Khan to Nalo,
+Swat where he stayed by that time. He was informed of the decision
+and was requested to lead the royal army to Dir. People in Swat
+did not like the idea and they strongly opposed it. However, for
+Sharif Khan it was a golden opportunity and he did not hesitate to
+accept the offer.
+
+\section{Return of Sharif Khan, 1895}
+
+Mohammad Sharif Khan reached Dargai via Palai without wasting any time. An army
+of 24,000 had reached Dargai. The people from Swat, Bajaur and Dir came to fight
+this army in order to stop their advance. They fought a fierce battle with very
+crude weapons in their hands and a holy war (Jehad) was declared. However, the
+British army won the game as they had much superior weaponry and good fighting
+skills.
+
+\section{Umara Khan's Resistance 1895}
+
+Umara Khan offered some resistance to the army at Shagokas a place between
+Talash and Temergara but could not stand and fled away to Kabul. On 17 April
+1895 the British army advanced towards Dir with Sharif Khan as the Chief guide
+and controlling authority.
+
+\section{Sharif Khan is Welcomed}
+
+Before their advance towards Dir people from all parts of Dir
+had reached Chakdara to welcome Sharif Khan. They included elders
+from Sultan Khel and Paindakhel as well. The army after reaching
+Dir advanced to Chitral. Before the army reached Dir, Muhammad
+Shah Khan had also escaped to Kabul via Binshahi. The army at
+Chitral arrested Amanul Mulk and sent him to India. Shujaul Mulk
+was declared as the Mehtar of Chitral by the British Government.
+
+Mohammad Sharif Khan was installed officially as Nawab of Dir
+under an agreement signed on December 12, 1895.
+
+\section{Sharif Khan Consolidates His Position}
+
+Nawab Sharif Khan now started consolidating his position in Dir. He started
+reorganizing his administrative machinery.
+
+He appointed Said Ahmad Khan Mastkhel as the Hakim of Barwa Jandool. This man
+was the cousin of Umara Khan. He was a friend and devotee of Sharif Khan and
+remained with him in his odd time in exile.
+
+He also appointed his own son Mian Gul Jan as Hakim of Munda. Similarly the
+areas of Sindh, Barawal and Maidan were given to his own trustworthy people and
+thus he laid a firm foundation of Nawabdom.
+
+Sharif Khan died at the age of 60 years in 1902 on the night of Idulfiter at
+Timergara. His dead body was carried to Dir where he was buried in the royal
+graveyard.
+
+\section{Redemarcation of the Boundaries of Dir State}
+
+Before the British arrived the state of Dir included in the north the area upto
+Asheret and Gad, in the East upper Swat, nikpikhel and Shamozai. The British
+separated the area of Ashret and Gad and declared it as part of Chitral. They
+also declared Jandool as legal part of the state of Dir. A written notification
+to this effect was notified in Dec. 1898 by the Govt. of India and thus the
+state of Dir was finally established with its fixed boundaries.
 
 
 \centerline{✽\quad ✽\quad ✽}
